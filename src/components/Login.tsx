@@ -1,5 +1,6 @@
 import { useRef } from 'react';
-import { Form, Button, Card } from 'react-bootstrap'
+import { Form, Button, Card } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 export default function Login () {
     const emailRef = useRef<HTMLInputElement>(null);
@@ -23,7 +24,7 @@ export default function Login () {
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
-                Don't have an account? Sign up!
+                Don't have an account? <Link to="/signup">Sign up!</Link>
             </div>
         </>
     )
