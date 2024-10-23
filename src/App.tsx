@@ -15,6 +15,7 @@ import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import { Container } from 'react-bootstrap'
 
 /* Core CSS required for Ionic components to work properly */
@@ -59,6 +60,13 @@ const App: React.FC = () => (
         </div>
         </Container>
       </Route>
+      <Route exact path="/signup">
+          <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+            <div className="w-100" style={{ maxWidth: "400px" }}>
+              <Signup />
+            </div>
+          </Container>
+        </Route>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/tab1">
