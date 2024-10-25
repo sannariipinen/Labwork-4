@@ -1,15 +1,15 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function Signup() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
-
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const history = useHistory();
 
   const auth = getAuth();
 
@@ -30,15 +30,11 @@ export default function Signup() {
           emailRef.current.value,
           passwordRef.current.value
         );
-
-        console.log("User signed up with:", {
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
-        });
+        history.push("/login");
         alert("Signup successful!");
       }
-    } catch (errer: any) {
-      setError("Failed to create an account");
+    } catch (error: any) {
+      setError("Failed to create an account: " + error.message);
     } finally {
       setLoading(false);
     }
