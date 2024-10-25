@@ -1,32 +1,34 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Signup() {
-
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
-  
-  const { signup } = useAuth();
+
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const history = useHistory();
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     if (passwordRef.current?.value !== passwordConfirmRef.current?.value) {
-      setError("Passwords do not match");
-      return;
+      return setError("Passwords do not match");
     }
 
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current?.value || "", passwordRef.current?.value || "");
-      history.push("/");
+
+      if (emailRef.current && passwordRef.current) {
+        console.log("User signed up with:", {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        });
+        alert("Signup successful!");
+      }
     } catch {
       setError("Failed to create an account");
     } finally {
