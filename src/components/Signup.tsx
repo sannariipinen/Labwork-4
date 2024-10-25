@@ -11,6 +11,8 @@ export default function Signup() {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  const auth = getAuth();
+  
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
