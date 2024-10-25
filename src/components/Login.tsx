@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Login () {
     const emailRef = useRef<HTMLInputElement>(null);
