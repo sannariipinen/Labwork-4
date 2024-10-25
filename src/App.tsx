@@ -7,7 +7,7 @@ import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import { Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
