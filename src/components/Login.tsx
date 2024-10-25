@@ -31,7 +31,8 @@ export default function Login () {
             <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Login</h2>
-                    <Form>
+                    {error && <div className="alert alert-danger">{error}</div>} {/* Näytä virhe, jos sellainen on */}
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" ref={emailRef} required />
@@ -45,8 +46,8 @@ export default function Login () {
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
-                Don't have an account? <Link to="/signup">Sign up!</Link>
+                Don't have an account? Sign up!
             </div>
         </>
-    )
+    );
 }
