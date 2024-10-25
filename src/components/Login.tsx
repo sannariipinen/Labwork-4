@@ -1,13 +1,14 @@
 import { useRef, useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { Link, useHistory } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Login () {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const [error, setError] = useState<string | null>(null); // Virhetilan hallinta
-    
+    const history = useHistory();
+
         const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             const auth = getAuth();
@@ -21,6 +22,7 @@ export default function Login () {
             try {
                 await signInWithEmailAndPassword(auth, email!, password!); // Kirjaudu sisään
                 // Onnistunut kirjautuminen, voit siirtyä eteenpäin, esim. redirect
+                history.push("/tab1"); 
             } catch (err: any) {
                 // Käsittele virhe
                 setError(err.message); // Näytä virhe
@@ -46,7 +48,7 @@ export default function Login () {
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
-                Don't have an account? Sign up!
+                Don't have an account? Sign up! <Link to="/signup">Sign Up</Link>
             </div>
         </>
     );
